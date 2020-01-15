@@ -31,3 +31,8 @@ create endingpoints
 define params
 
 create post request and test it using postmann
+
+
+VALIDATOR
+
+npm i joi 
