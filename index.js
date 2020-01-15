@@ -29,11 +29,14 @@ app.get("/api/courses/:id", (req, res) => {
     res.send(course);
 })
 
-//inspect/network/all -refresh CTRL + R
-
 // POST REQUEST
-// we need manually assign an id beacause there is not DB
 app.post("/api/courses", (req, res) => {
+    //simple validator
+    if (!req.body.name || req.body.name.length < 3) {
+        res.status(404).send("Name is required and should be minimus 3 characters");
+        return;
+    }
+
     const course = {
         id: courses.length + 1,
         name: req.body.name
