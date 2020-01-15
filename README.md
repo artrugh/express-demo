@@ -20,3 +20,9 @@ each method have two argument
 app.get ("path", callbackFuntion(req , res) => 
 res has different properties like res.body res.params res.cookies res.send
 )
+
+
+NODEMON node monitor
+instead of runing the app using node, we use nodemon
+
+npm i nodemon
