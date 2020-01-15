@@ -36,3 +36,8 @@ create post request and test it using postmann
 VALIDATOR
 
 npm i joi 
+
+put = update
+delete
+
+clean the code us much as possible
