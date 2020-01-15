@@ -3,31 +3,44 @@ const app = express();
 
 // this is just a simple example to learn how express mothods work
 
+//add a middleware
+app.use(express.json());
+
+const courses = [
+    { id: 1, name: "course1" },
+    { id: 2, name: "course2" },
+    { id: 3, name: "course3" }
+
+]
+
 app.get("/", (req, res) => {
     res.send("Hello Word!")
 });
 
 //define a parameter
 app.get("/api/courses/", (req, res) => {
-    res.send([1,2,3])
+    res.send(courses)
 })
 
 //define a parameter
 app.get("/api/courses/:id", (req, res) => {
-    res.send(req.params.id)
+    const course = courses.find(c => c.id === parseInt(req.params.id));
+    if (!course) res.status(404).send("The course with the given ID was not found");
+    res.send(course);
 })
 
-//define a parameter
+//inspect/network/all -refresh CTRL + R
 
-// app.get("/api/post/:year/:month", (req, res) => {
-//     res.send(req.params)
-// })
-
-// define a sortByname
-// in the browser
-// http://localhost:3000/api/post/2016/2?sortBy=name
-app.get("/api/post/:year/:month", (req, res) => {
-    res.send(req.query)
+// POST REQUEST
+// we need manually assign an id beacause there is not DB
+app.post("/api/courses", (req, res) => {
+    const course = {
+        id: courses.length + 1,
+        name: req.body.name
+    }
+    courses.push(course);
+    //send to the user the new course
+    res.send(course);
 })
 const port = process.env.PORT || 3000
-app.listen(port , () => console.log(`Listening on port ${port}...`))
+app.listen(port, () => console.log(`Listening on port ${port}...`))

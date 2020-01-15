@@ -25,5 +25,9 @@ NODEMON node monitor
 instead of runing the app using node, we use nodemon
 npm i nodemon
 
-// create endingpoints
+for testing use postman
+
+create endingpoints
 define params
+
+create post request and test it using postmann
